@@ -1,27 +1,33 @@
 <template>
-    <ul>
-        <li v-for="unidade in parsedNames" :key="unidade.id">
-            {{unidade}}
-        </li>
-    </ul>
+    <div>
+    <ListItems :unidades="unidades" @selected="selectedID=$event"></ListItems>
+    <h4 v-show="selectedID>0"> 
+        ID Selecionado: {{selectedID}}
+    </h4>
+    </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ListItemsVue from './ListItems.vue';
 export default {
     data: function(){
         return {
             unidades: [],
             loading: false,
+            selectedID: 0,
         }
     },
     rules:
     {
         "no-console": "off"
     },
+    components: {
+        'ListItems': ListItemsVue,
+    },
     methods: {
         getAllUnidades() {
-            axios.get("http://localhost:9000/unidadeOp/")
+            axios.get("http://localhost:8000/unidadeOp/")
             .then((response) => {
             this.unidades = response.data;
       })
