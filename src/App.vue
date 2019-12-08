@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <ul>
+        <li v-for="unidade in parsedNames" :key="unidade.id">
+            {{unidade}}
+        </li>
+    </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import axios from 'axios'
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    data: function(){
+        return {
+            unidades: [],
+            loading: false,
+        }
+    },
+    rules:
+    {
+        "no-console": "off"
+    },
+    methods: {
+        getAllUnidades() {
+            axios.get("http://localhost:9000/unidadeOp/")
+            .then((response) => {
+            this.unidades = response.data;
+      })
+      .catch((err) => {
+       this.loading = false;
+       throw new Error(err);
+      })
+        }
+    },
+    mounted: function(){
+        this.getAllUnidades();
+    },
+    computed: {
+        parsedNames() {
+            let names = [];
+            this.unidades.forEach(element => {
+                names.push(element.nome + " ID:" + element.id);
+            });
+            return names;
+        }
+    }
+    
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
