@@ -1,0 +1,3 @@
+- Interface Gráfica para projeto
+- Extensão para navegador
+- Modularização com .vue
