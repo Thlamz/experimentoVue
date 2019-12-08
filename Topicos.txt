@@ -1,3 +1,6 @@
 - Interface Gráfica para projeto
 - Extensão para navegador
-- Modularização com .vue
+- Modularização
+- Bind,if,loop, etc.
+- Eventos
+- Arquivo faz tudo
