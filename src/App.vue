@@ -1,8 +1,8 @@
 <template>
     <div>
     <ListItems :unidades="unidades" @selected="selectedID=$event"></ListItems>
-    <h4 v-show="selectedID>0"> 
-        ID Selecionado: {{selectedID}}
+    <h4> 
+        ID Selecionado: {{selectedID || "Nenhum"}}
     </h4>
     </div>
 </template>

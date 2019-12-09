@@ -1,6 +1,12 @@
 - Interface Gráfica para projeto
 - Extensão para navegador
 - Modularização
+    - Componentes
+        . Tree
+        . Tabelas
+        . Slots(injetar no componente filho)
+    - Mixins
+    - Eventos
 - Bind,if,loop, etc.
 - Eventos
-- Arquivo faz tudo
+- Arquivo "faz tudo" .vue
